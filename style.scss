@@ -1,4 +1,24 @@
                         // *1 variables*
+@mixin flex{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+@mixin btn($br){
+    width:70px;
+    height:40px;
+    margin: 10px;
+    border-radius: $br;
+    color: black;
+    font-weight: 400;
+    &:hover{
+        background-color: aqua;
+    }
+    &:active{
+        background-color: red;
+    }
+}
 
                         // global-resets
 $primary-color:#f5f5f5;
@@ -9,22 +29,22 @@ $font-sm:30px;
 $spacing:20px;
 $text-decoration:none;
 $list-style:none;
+$primaryFont: 'Roboto', sans-serif;
 
 
                         // Button-rests
-$w:25px;
-$h:35px;
+
+
+                        // navbar-code
+
 
 header{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 30px 10%;
-    background-color:$secondary-color;
+    @include flex;
+    background-color :$secondary-color;
 
     h2{
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-weight: 100;
+        font-family:$primaryFont;
+        font-weight: 500;
     }
     
     li,a{
@@ -33,6 +53,10 @@ header{
         text-decoration: $text-decoration;
         list-style-type: $list-style;
         color: #f5f5f5;
+        display: inline-block;
+    }
+    button{
+        @include btn(8px);
     }
 
 
@@ -43,6 +67,17 @@ body{
     font-size: $font-lg;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     background-color: $primary-color;
 }
 
+footer{
+    position: fixed;
+    appearance: hidden;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $secondary-color;
+    color: white;
+    text-align: center;
+}
