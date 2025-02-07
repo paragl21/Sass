@@ -1,10 +1,30 @@
                         // *1 variables*
-@mixin flex{
+                        
+@mixin flex($fd){
     display: flex;
     justify-content: space-around;
-    flex-direction: row;
+    flex-direction: $fd;
     align-items: center;
 }
+
+@import "_import";
+
+                        // global-resets
+
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: $font-lg;
+    background-color: #313131;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $primary-color;}
+
+
+
+                        // Button-rests
+
 @mixin btn($br){
     width:70px;
     height:40px;
@@ -19,27 +39,31 @@
         background-color: red;
     }
 }
+#primary{
+    width: 80px;
+    height: 35px;
+    margin: 15px;
+    border-radius: 15px;
+    color: purple;
+}
+#secondary{
+    width: 80px;
+    height: 35px;
+    margin: 15px;
+    border-radius: 15px;
+    color: midnightblue;
+}
 
-                        // global-resets
-$primary-color:#f5f5f5;
-$secondary-color:#2c3e50;
-$text-color:#ffffff;
-$font-lg:16px;
-$font-sm:30px;
-$spacing:20px;
-$text-decoration:none;
-$list-style:none;
-$primaryFont: 'Roboto', sans-serif;
-
-
-                        // Button-rests
-
-
+#danger{
+    width: 80px;
+    height: 35px;
+    margin: 15px;
+    border-radius: 15px;
+    color: red;
+}
                         // navbar-code
-
-
 header{
-    @include flex;
+    @include flex(row);
     background-color :$secondary-color;
 
     h2{
@@ -54,30 +78,41 @@ header{
         list-style-type: $list-style;
         color: #f5f5f5;
         display: inline-block;
+        &:hover{
+        text-decoration: underline;
     }
+
     button{
         @include btn(8px);
+        @extend #primary;
     }
-
-
+}
+    
+}
+@media screen and (max-width:900px) {
+    header{
+        @include flex(column);
+    }
+    
 }
 
-body{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: $font-lg;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: $primary-color;
+// Hero-section
+.hero-section{
+    button{
+    @include btn(10px);
+    @extend #primary;
+    }
+    
 }
+
+
 
 footer{
     position: fixed;
-    appearance: hidden;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: $secondary-color;
-    color: white;
+    color: #f5f5f5;
     text-align: center;
 }
